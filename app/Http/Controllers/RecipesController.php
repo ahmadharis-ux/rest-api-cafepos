@@ -94,4 +94,9 @@ class RecipesController extends Controller
     {
         //
     }
+
+
+    public function search($name) {
+        return Recipes::where('name', 'like', '%'.$name.'%')->get();
+    }
 }
