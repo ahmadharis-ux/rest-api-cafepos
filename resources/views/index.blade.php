@@ -64,8 +64,8 @@
                     @foreach ($Beverages as $item)
                     <tr>
                         <td>{{$item->name}}</td>
-                        <td>{{$item->bc->name}}</td>
-                        <td>{{$item->rc->name}}</td>
+                        <td>{{$item->beverageCategory->name}}</td>
+                        <td>{{$item->recipe->name}}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -101,10 +101,10 @@
                             
                                 <div class="card col m-2">
                                     <b>Detail Ingredient</b>
-                                    {{-- <p>Recipe Id : {{$item->beverage->rc}}</p> --}}
+                                    {{-- <p>Recipe Id : {{$item->beverage->recipe}}</p> --}}
                                     {{-- <hr> --}}
-                                    {{-- <p>Recipe Id : {{$item->beverage->rc->ris}}</p> --}}
-                                    @foreach ($item->beverage->rc->ris as $itembv)
+                                    {{-- <p>Recipe Id : {{$item->beverage->recipe->ris}}</p> --}}
+                                    @foreach ($item->beverage->recipe->ris as $itembv)
                                         <p>
                                             
                                             <label for="">{{$itembv->amount * $item->qty}} Gram {{$itembv->ingredient_stock->ingredient->name}}</label>
@@ -120,6 +120,6 @@
             </table>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>   
+    <script srecipe="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>   
 </body>
 </html>

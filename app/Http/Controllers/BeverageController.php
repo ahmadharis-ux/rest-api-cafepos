@@ -19,9 +19,7 @@ class BeverageController extends Controller
                 'message' => 'Not Found'
             ]);
         }else{
-            return response()->json([
-                'AllDataBeverages' => Beverage::all()
-            ]);
+            return  Beverage::all();
         }
     }
 
@@ -72,28 +70,24 @@ class BeverageController extends Controller
      */
     public function update(Request $request,  $id)
     {
-        $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'beverage_category_id' => 'required',
-            'recipe_id' => 'required',
-            'price' => 'required|numeric',
-            'netto' => 'nullable|numeric',
-        ]);
-        if($validator->fails()){
-            return response()->json([
-                'error' => $validator->errors()
-            ]);
-        }
-        Beverage::findOrFail($id)->update([
-            'name' => $request->name,
-            'beverage_category_id' => $request->beverage_category_id,
-            'recipe_id' => $request->recipe_id,
-            'price' => $request->price,
-            'netto' => $request->netto,
-        ]);
-        return response()->json([
-            'message' => 'Update Beverage berhasil'
-        ]);
+		$beverage = Beverage::find($id); 
+
+		$request->validate([
+			'name' => 'required',
+			'beverage_category_id' => 'required',
+			'recipe_id' => 'required',
+			'price' => 'required|numeric',
+			'netto' => 'nullable|numeric',
+		]);
+
+		$beverage->name = $request->name; 
+		$beverage->beverage_category_id = $request->beverage_category_id;
+		$beverage->recipe_id = $request->recipe_id;
+		$beverage->price = $request->price;
+		$beverage->netto = $request->netto;
+		$beverage->save();
+
+		return $beverage;
     }
 
     /**

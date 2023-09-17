@@ -11,9 +11,13 @@ use App\Http\Controllers\RecipesController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\RoleController;
 use App\Models\Order;
+use App\Models\User;
 use App\Models\OrderTransaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\ValidationException;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +30,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 //Role
 Route::post('/create-role', [RoleController::class, 'store']);

@@ -10,10 +10,13 @@ class Beverage extends Model
     use HasFactory;
     protected $guarded =['id'];
 
-    function bc(){
-        return  $this->belongsTo(BeveragesCategory::class,'beverage_category_id');
-    }
-    function rc(){
-        return  $this->belongsTo(Recipes::class,'recipe_id');
-    }
+    function recipe()
+	{
+		return  $this->belongsTo(Recipes::class, 'recipe_id');
+	}
+
+	function beverageCategory()
+	{
+		return  $this->belongsTo(BeveragesCategory::class, 'beverage_category_id');
+	}
 }
