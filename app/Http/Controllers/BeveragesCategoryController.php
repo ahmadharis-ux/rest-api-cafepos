@@ -19,9 +19,8 @@ class BeveragesCategoryController extends Controller
                 'message' => 'Not Found'
             ]);
         }else{
-            return response()->json([
-                'AllDataBeveragesCategory' => BeveragesCategory::all()
-            ]);
+            return  BeveragesCategory::all();
+
         }
     }
 
@@ -90,5 +89,16 @@ class BeveragesCategoryController extends Controller
     public function destroy(BeveragesCategory $beveragesCategory)
     {
         //
+    }
+    public function search(Request $request)
+    {
+        $query = $request->input('name');
+
+        if (!$query) {
+            return response()->json(['error' => 'Query parameter is required'], 400);
+        }
+
+
+        return BeveragesCategory::with('beverage')->where('name', 'like', '%'.$query.'%')->get();
     }
 }

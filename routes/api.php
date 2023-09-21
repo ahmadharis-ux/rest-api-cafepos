@@ -31,7 +31,16 @@ use Illuminate\Validation\ValidationException;
 |
 */
 
+//Cetak Struk
+Route::get('/cetakstruk/{id}', [OrderTransactionController::class, 'cetakstruk']);
 
+//Order
+Route::get('/data-order', [OrderController::class, 'index']);
+Route::post('/store-order', [OrderController::class, 'store']);
+Route::get('/show-order/{id}', [OrderController::class, 'show']);
+
+//Transaction
+Route::post('/store-order-transaction', [OrderTransactionController::class, 'store']);
 //Public Access=============================================================================================
 //Auth
 Route::post('/register', [AuthController::class, 'register']);
@@ -45,6 +54,7 @@ Route::post('/regis-user',[RegistrationController::class, 'registration']);
 
 //beverage category
 Route::get('/data-beverage-category',[BeveragesCategoryController::class,'index']);
+Route::post('/data-beverage-category',[BeveragesCategoryController::class,'search']);
 
 
 //Ingredient
@@ -66,47 +76,49 @@ Route::get('/data-recipe-ingredient-stock',[RecipeIngridientStockController::cla
 
 
 //Private Access============================================================================================
-Route::group((['middleware' => ['auth:sanctum']]),function (){
-//Recipes
-Route::post('/store-data-recipe',[RecipesController::class,'store']);
-Route::put('/update-data-recipe/{id}',[RecipesController::class,'update']);
-Route::get('/search-data-recipe/{name}',[RecipesController::class,'search']);
+// Route::group((['middleware' => ['auth:sanctum']]),function (){
+    //Recipes
+    Route::post('/store-data-recipe',[RecipesController::class,'store']);
+    Route::put('/update-data-recipe/{id}',[RecipesController::class,'update']);
+    Route::get('/search-data-recipe/{name}',[RecipesController::class,'search']);
 
-//Role
-Route::post('/create-role', [RoleController::class, 'store']);
-Route::get('/data-role', [RoleController::class, 'index']);
-Route::get('/data-role/{id}', [RoleController::class, 'show']);
-Route::put('/update-role/{id}', [RoleController::class, 'update']);
-Route::delete('/delete-role/{id}', [RoleController::class, 'destroy']);
-Route::get('/data-role-kasir/{id}', [RoleController::class, 'getUserRole']);
+    //Role
+    Route::post('/create-role', [RoleController::class, 'store']);
+    Route::get('/data-role', [RoleController::class, 'index']);
+    Route::get('/data-role/{id}', [RoleController::class, 'show']);
+    Route::put('/update-role/{id}', [RoleController::class, 'update']);
+    Route::delete('/delete-role/{id}', [RoleController::class, 'destroy']);
+    Route::get('/data-role-kasir/{id}', [RoleController::class, 'getUserRole']);
 
-Route::post('/store-data-beverage-category',[BeveragesCategoryController::class,'store']);
-Route::put('/update-data-beverage-category/{id}',[BeveragesCategoryController::class,'update']);
-
-Route::post('/store-data-ingredient',[IngredientController::class,'store']);
-Route::put('/update-data-ingredient/{id}',[IngredientController::class,'update']);
-
-Route::post('/store-data-beverage',[BeverageController::class,'store']);
-Route::put('/update-data-beverage/{id}',[BeverageController::class,'update']);
-
-Route::post('/store-data-ingredient-stock',[IngredientStockController::class,'store']);
-Route::put('/update-data-ingredient-stock/{id}',[IngredientStockController::class,'update']);
-
-Route::post('/store-data-recipe-ingredient-stock',[RecipeIngridientStockController::class,'store']);
-Route::put('/update-data-recipe-ingredient-stock/{id}',[RecipeIngridientStockController::class,'update']);
-
-//Order
-Route::get('/data-order', [OrderController::class, 'index']);
-Route::post('/store-order', [OrderController::class, 'store']);
-Route::get('/show-order/{id}', [OrderController::class, 'show']);
-
-//Transaction
-Route::post('/store-order-transaction', [OrderTransactionController::class, 'store']);
+    Route::post('/store-data-beverage-category',[BeveragesCategoryController::class,'store']);
+    Route::put('/update-data-beverage-category/{id}',[BeveragesCategoryController::class,'update']);
+    // Route::post('/search-data-beverage-category',[BeveragesCategoryController::class,'search']);
 
 
-Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/store-data-ingredient',[IngredientController::class,'store']);
+    Route::put('/update-data-ingredient/{id}',[IngredientController::class,'update']);
 
-});
+    Route::post('/store-data-beverage',[BeverageController::class,'store']);
+    Route::put('/update-data-beverage/{id}',[BeverageController::class,'update']);
+
+    Route::post('/store-data-ingredient-stock',[IngredientStockController::class,'store']);
+    Route::put('/update-data-ingredient-stock/{id}',[IngredientStockController::class,'update']);
+
+    Route::post('/store-data-recipe-ingredient-stock',[RecipeIngridientStockController::class,'store']);
+    Route::put('/update-data-recipe-ingredient-stock/{id}',[RecipeIngridientStockController::class,'update']);
+
+
+
+
+    Route::post('/store-data-recipe-dan-ingredient-stock',[RecipesController::class,'recipeSekalianIngredient']);
+
+
+
+
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+// });
 
 
 

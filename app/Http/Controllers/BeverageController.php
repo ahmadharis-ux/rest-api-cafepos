@@ -19,7 +19,7 @@ class BeverageController extends Controller
                 'message' => 'Not Found'
             ]);
         }else{
-            return  Beverage::all();
+            return  Beverage::with('beverageCategory')->get();
         }
     }
 

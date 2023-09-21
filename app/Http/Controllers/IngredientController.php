@@ -19,9 +19,7 @@ class IngredientController extends Controller
                 'message' => 'Not Found'
             ]);
         }else{
-            return response()->json([
-                'AllDataIngredient' => Ingredient::all()
-            ]);
+            return response(Ingredient::with('ingredient_stock')->get());
         }
     }
 

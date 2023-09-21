@@ -25,7 +25,8 @@ Route::get('/', function () {
         'IngStocks' => IngredientStock::all(),
         'Recipes' => Recipes::with('ris')->get(),
         'Beverages' => Beverage::all(),
-        'Orders' => Order::with('order_details')->get()
+        'Orders' => Order::all(),
+        'OrderDetails' => OrderDetail::all(),
     ]);
 });
 Route::get('/hm',function(){

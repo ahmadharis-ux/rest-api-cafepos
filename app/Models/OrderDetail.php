@@ -11,7 +11,7 @@ class OrderDetail extends Model
     protected $guarded =['id'];
 
     function order(){
-        return $this->hasMany(Order::class,'order_id');
+        return $this->belongsTo(Order::class,'order_id');
     }
     function beverage(){
         return $this->belongsTo(Beverage::class, 'beverage_id');

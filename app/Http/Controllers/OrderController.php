@@ -16,9 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'Order' => Order::with('orderdetail')->get(),
-        ]);
+        return response(Order::with('order_details.beverage')->get());
     }
 
     /**
@@ -63,10 +61,11 @@ class OrderController extends Controller
         }
         
         OrderDetail::insert($orderDetails);
-        
-        return response()->json([
-            'message' => 'Berhasil Ditambahkan'
-        ]);
+        $orderWithStatus = [
+            'status' => $order->status,
+            'order_details' => $orderDetails,
+        ];
+        return response($orderWithStatus);
         
         
     }

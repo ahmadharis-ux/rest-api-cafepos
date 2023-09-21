@@ -104,7 +104,11 @@ class DatabaseSeeder extends Seeder
 
         $Beverages = [  
             ['name' => 'Es Teh Manis', 'beverage_category_id'=>1,'recipe_id'=>1,'price'=> 7000,'netto' => null],
+            ['name' => 'Es Teh Tarik', 'beverage_category_id'=>1,'recipe_id'=>1,'price'=> 10000,'netto' => null],
+            ['name' => 'Capucino', 'beverage_category_id'=>3,'recipe_id'=>2,'price'=> 25000,'netto' => null],
             ['name' => 'Kopi Hitam', 'beverage_category_id'=>3,'recipe_id'=>2,'price'=> 15000,'netto' => null],
+            ['name' => 'Orange Juice', 'beverage_category_id'=>3,'recipe_id'=>2,'price'=> 18000,'netto' => null],
+            ['name' => 'Apple Juice', 'beverage_category_id'=>3,'recipe_id'=>2,'price'=> 18000,'netto' => null],
         ];
         foreach($Beverages as $beverage){
             Beverage::create([

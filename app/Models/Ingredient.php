@@ -9,4 +9,8 @@ class Ingredient extends Model
 {
     use HasFactory;
     protected $guarded =['id'];
+
+    function ingredient_stock(){
+        return $this->hasMany(IngredientStock::class, 'ingredients_id');
+    }
 }
